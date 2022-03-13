@@ -1,0 +1,47 @@
+#!/usr/bin/perl
+my ($in_str, $in_ml_comment);
+while (<>) {
+  my $line = '';
+  chomp;
+  my ($in_sl_comment, $escape, $star, $slash);
+  for my $c (split //) {
+    if ($in_str) {
+      if (!$escape) {
+        if ($c eq '"') {
+          undef $in_str;
+        } elsif ($c eq '\\') {
+          $escape = 1;
+        }
+      } else {
+        undef $escape;
+      }
+    } elsif ($in_ml_comment) {
+      if ($star) {
+        undef $in_ml_comment if $c eq '/';
+        undef $star;
+      } elsif ($c eq '*') {
+        $star = 1;
+      }
+      $c = ' ';
+    } elsif ($in_sl_comment) {
+      $c = ' '
+    } elsif ($slash) {
+      if ($c eq '/') {
+        $in_sl_comment = 1;
+        chop $line;
+        $c = '  ';
+      } elsif ($c eq '*') {
+        $in_ml_comment = 1;
+        chop $line;
+        $c = '  ';
+      }
+      undef $slash;
+    } elsif ($c eq '/') {
+      $slash = 1;
+    } elsif ($c eq '"') {
+      $in_str = 1;
+    }
+    $line .= $c;
+  }
+  print "$line\n";
+}
