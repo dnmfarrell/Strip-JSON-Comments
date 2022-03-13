@@ -1,9 +1,8 @@
 #!/usr/bin/perl
 my ($in_str, $in_ml_comment);
 while (<>) {
-  my $line = '';
   chomp;
-  my ($in_sl_comment, $escape, $star, $slash);
+  my ($line, $in_sl_comment, $escape, $star, $slash) = ('');
   for my $c (split //) {
     if ($in_str) {
       if (!$escape) {
