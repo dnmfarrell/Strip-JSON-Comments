@@ -20,4 +20,11 @@ Some JSONC parsers support trailing commas, but as `strip-jsonc` is line-oriente
 This repo contains a test input file called `test.jsonc` which exercises the different cases of embedding comments in JSON.
 
 ### Perl
-This script is written in Perl and designed to be fast and compatible with any version of Perl 5.
+The `strip-jsonc` script is written in Perl and designed to be fast and compatible with any version of Perl 5.
+
+### Go
+There is a golang variant of the strip-jsonc script which has the same behavior as the Perl script but can be 3-4x faster for large inputs. It can be compiled with go build:
+
+```
+go build gostrip-jsonc.go
+```
