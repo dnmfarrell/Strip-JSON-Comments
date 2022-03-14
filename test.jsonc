@@ -2,8 +2,8 @@
 { "foo //": 123, // another single line comment
   /* 
   * block comments
-  *
+  * 👍
 /
   can contain whatever you "want"
-  */ "b\"\\ar/*": /* inline block comments are ok */"*/baz"
+  */ "b😃\"\\ar/*": /* inline block comments are ok */"*/baz"
 }
